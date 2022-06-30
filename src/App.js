@@ -6,15 +6,18 @@ import Billing from "./pages/Billing";
 
 function App() {
     return (
-        <div className="App">
-            <BrowserRouter>
-                <Routes>
-                    <Route path="registration" element={<Registration />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="billings" element={<Billing />} />
-                </Routes>
-            </BrowserRouter>
-        </div>
+        <>
+            <div className="App">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="registration" element={<Registration />} />
+                        <Route path="login" element={<Login />} />
+                        <Route path="/" element={<Billing />} />
+                        <Route path="billings" element={<Billing />} />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+        </>
     );
 }
 
