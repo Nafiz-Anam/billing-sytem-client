@@ -1,0 +1,15 @@
+.layout-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.logo{
+  font-size: 35px;
+  font-weight: 900;
+}
+
+footer p{
+  font-size: 14px;
+}
