@@ -1,6 +1,6 @@
 # Bills. (frontend)
 
-**Bills.** is a full feature Online online billings record system. **Bills.**
+**Bills.** is a full feature Online online billings record system.
 
 ## Live
 
@@ -28,12 +28,20 @@
 -   Simple 3 page web app. Login, Registration and Billings
 -   Realistic Header,Footer
 
+![Website Screenshot](d01.png)
+
 ## API Features
 
 -   Custom JWT Auth
 -   All protected routes
 -   Used mongodb for storage of data
 -   mongoose for server side data validation
+
+![Website Screenshot](f01.png)
+
+![Website Screenshot](bill.png)
+
+![Website Screenshot](edit.png)
 
 ## Run Locally
 
