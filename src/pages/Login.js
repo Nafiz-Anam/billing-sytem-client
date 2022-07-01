@@ -58,8 +58,22 @@ const Login = () => {
                                 placeholder="Email"
                                 {...register("email", {
                                     required: true,
+                                    pattern:
+                                        /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                                 })}
                             />
+                            {errors.email &&
+                                errors.email.type === "required" && (
+                                    <p className="text-danger err">
+                                        This field is required
+                                    </p>
+                                )}
+                            {errors.email &&
+                                errors.email.type === "pattern" && (
+                                    <p className="text-danger err">
+                                        Enter valid email address
+                                    </p>
+                                )}
                             <input
                                 type="password"
                                 placeholder="Password"
@@ -68,6 +82,12 @@ const Login = () => {
                                     required: true,
                                 })}
                             />
+                            {errors.password &&
+                                errors.password.type === "required" && (
+                                    <p className="text-danger err">
+                                        This field is required
+                                    </p>
+                                )}
                             <input
                                 className="btn login-btn"
                                 type="submit"

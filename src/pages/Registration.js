@@ -59,18 +59,51 @@ const Registration = () => {
                             placeholder="User Name"
                             {...register("user_name", {
                                 required: true,
+                                pattern: /[A-Za-z\s]/,
                             })}
                         />
+                        {errors.user_name &&
+                            errors.user_name.type === "required" && (
+                                <p className="text-danger err">
+                                    This field is required
+                                </p>
+                            )}
+                        {errors.user_name &&
+                            errors.user_name.type === "pattern" && (
+                                <p className="text-danger err">
+                                    Name must be in alphabets
+                                </p>
+                            )}
                         <input
                             type="email"
                             placeholder="Email"
-                            {...register("email", { required: true })}
+                            {...register("email", {
+                                required: true,
+                                pattern:
+                                    /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            })}
                         />
+                        {errors.email && errors.email.type === "required" && (
+                            <p className="text-danger err">
+                                This field is required
+                            </p>
+                        )}
+                        {errors.email && errors.email.type === "pattern" && (
+                            <p className="text-danger err">
+                                Enter valid email address
+                            </p>
+                        )}
                         <input
                             type="password"
                             placeholder="Password"
                             {...register("password", { required: true })}
                         />
+                        {errors.password &&
+                            errors.password.type === "required" && (
+                                <p className="text-danger err">
+                                    This field is required
+                                </p>
+                            )}
                         <input
                             className="btn btn-register"
                             type="submit"

@@ -38,13 +38,13 @@ const Billing = () => {
         if (!user) {
             navigate("/login");
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
     useEffect(() => {
         getData();
         setLoadData(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadData]);
 
     const getData = async () => {

@@ -27,7 +27,7 @@ const Form = ({ id, handleEdit }) => {
                 setDefaultData(billData);
                 reset(billData);
             });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const {
@@ -114,6 +114,7 @@ const Form = ({ id, handleEdit }) => {
                             placeholder="Phone"
                             {...register("phone", {
                                 maxLength: 11,
+                                minLength: 11,
                                 required: true,
                                 pattern: /[0-9]/,
                             })}
@@ -131,6 +132,11 @@ const Form = ({ id, handleEdit }) => {
                         {errors.phone && errors.phone.type === "maxLength" && (
                             <span className="text-danger">
                                 Maximum length is 11
+                            </span>
+                        )}
+                        {errors.phone && errors.phone.type === "minLength" && (
+                            <span className="text-danger">
+                                Minimum length is 11
                             </span>
                         )}
                     </div>
