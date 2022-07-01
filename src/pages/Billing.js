@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Form from "../components/Form";
+import { API_BASE_URL } from "../apiconstants";
 
 const Billing = () => {
     const [data, setData] = useState([]);
@@ -37,23 +38,22 @@ const Billing = () => {
         if (!user) {
             navigate("/login");
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
     useEffect(() => {
         getData();
         setLoadData(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadData]);
 
     const getData = async () => {
         try {
-            const response = await axios(
-                "https://ph-task-api.herokuapp.com/api/billing-list/",
-                {
-                    headers: {
-                        token: `Bearer ${user?.accessToken}`,
-                    },
-                }
-            );
+            const response = await axios(API_BASE_URL + "/api/billing-list/", {
+                headers: {
+                    token: `Bearer ${user?.accessToken}`,
+                },
+            });
             // console.log(response.data.result);
             setData(response.data.result);
         } catch (err) {
@@ -72,14 +72,11 @@ const Billing = () => {
         console.log(id);
         try {
             axios
-                .delete(
-                    `https://ph-task-api.herokuapp.com/api/delete-billing/${id}`,
-                    {
-                        headers: {
-                            token: `Bearer ${user?.accessToken}`,
-                        },
-                    }
-                )
+                .delete(API_BASE_URL + `/api/delete-billing/${id}`, {
+                    headers: {
+                        token: `Bearer ${user?.accessToken}`,
+                    },
+                })
                 .then((res) => {
                     if (res.data.status === 1) {
                         setLoadData(true);
@@ -93,7 +90,7 @@ const Billing = () => {
     const columns = [
         {
             Header: "Billing ID",
-            accessor: "",
+            accessor: "billing_id",
         },
         {
             Header: "Name",
@@ -148,15 +145,11 @@ const Billing = () => {
         // console.log("form data =>", data);
         try {
             axios
-                .post(
-                    "https://ph-task-api.herokuapp.com/api/add-billing/",
-                    data,
-                    {
-                        headers: {
-                            token: `Bearer ${user?.accessToken}`,
-                        },
-                    }
-                )
+                .post(API_BASE_URL + "/api/add-billing/", data, {
+                    headers: {
+                        token: `Bearer ${user?.accessToken}`,
+                    },
+                })
                 .then((res) => {
                     if (res.data.status === 1) {
                         setLoadData(true);
@@ -184,9 +177,10 @@ const Billing = () => {
                 sizePerPageList={itemsPerPage}
                 isSortable={true}
                 pagination={true}
+                isSearchable={true}
             />
 
-            {/* modal */}
+            {/* modal edit*/}
 
             <Modal show={show2} onHide={handleClose2} size="lg">
                 <Modal.Header closeButton>
@@ -196,6 +190,8 @@ const Billing = () => {
                     <Form id={billID} handleEdit={handleEdit} />
                 </Modal.Body>
             </Modal>
+
+            {/* modal add*/}
 
             <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header closeButton>

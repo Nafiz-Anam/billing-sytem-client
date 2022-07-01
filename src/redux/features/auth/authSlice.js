@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_BASE_URL } from "../../../apiconstants";
 import authService from "./authService";
 
 // Get user from localStorage
@@ -14,7 +15,7 @@ const initialState = {
 
 // Register user
 export const registration = createAsyncThunk(
-    "https://ph-task-api.herokuapp.com/api/registration",
+    API_BASE_URL + "/api/registration",
     async (user, thunkAPI) => {
         try {
             return await authService.registration(user);
@@ -32,7 +33,7 @@ export const registration = createAsyncThunk(
 
 // Login user
 export const login = createAsyncThunk(
-    "https://ph-task-api.herokuapp.com/api/login",
+    API_BASE_URL + "/api/login",
     async (user, thunkAPI) => {
         try {
             return await authService.login(user);

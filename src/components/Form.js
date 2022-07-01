@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { API_BASE_URL } from "../apiconstants";
 
 const Form = ({ id, handleEdit }) => {
     // console.log(id);
     const { user } = useSelector((state) => state.auth);
-    const [loadData, setLoadData] = useState(false);
     const [defaultData, setDefaultData] = useState({});
 
     useEffect(() => {
         axios
-            .get(`https://ph-task-api.herokuapp.com/api/update-billing/${id}`, {
+            .get(API_BASE_URL + `/api/update-billing/${id}`, {
                 headers: {
                     token: `Bearer ${user?.accessToken}`,
                 },
@@ -27,6 +27,7 @@ const Form = ({ id, handleEdit }) => {
                 setDefaultData(billData);
                 reset(billData);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const {
@@ -40,18 +41,13 @@ const Form = ({ id, handleEdit }) => {
         // console.log("form data =>", data);
         try {
             axios
-                .put(
-                    `https://ph-task-api.herokuapp.com/api/update-billing/${id}`,
-                    data,
-                    {
-                        headers: {
-                            token: `Bearer ${user?.accessToken}`,
-                        },
-                    }
-                )
+                .put(API_BASE_URL + `/api/update-billing/${id}`, data, {
+                    headers: {
+                        token: `Bearer ${user?.accessToken}`,
+                    },
+                })
                 .then((res) => {
                     if (res.data.status === 1) {
-                        setLoadData(true);
                         handleEdit();
                     }
                 });

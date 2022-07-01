@@ -13,3 +13,11 @@
 footer p{
   font-size: 14px;
 }
+.search{
+  margin: 20px 0;
+}
+
+.search span{
+  font-weight: 500;
+  font-size: 20px;
+}

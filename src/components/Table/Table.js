@@ -10,6 +10,7 @@ import {
     useExpanded,
 } from "react-table";
 import classNames from "classnames";
+import "../global.css";
 
 // components
 import Pagination from "./Pagination";
@@ -19,7 +20,7 @@ const GlobalFilter = ({
     preGlobalFilteredRows,
     globalFilter,
     setGlobalFilter,
-    searchBoxClass,
+    // searchBoxClass,
 }) => {
     const count = preGlobalFilteredRows.length;
     const [value, setValue] = React.useState(globalFilter);
@@ -28,17 +29,17 @@ const GlobalFilter = ({
     }, 200);
 
     return (
-        <div className={classNames(searchBoxClass)}>
+        <div className="search">
             <span className="d-flex align-items-center">
-                Search :{" "}
+                Search {"  "}
                 <input
                     value={value || ""}
                     onChange={(e) => {
                         setValue(e.target.value);
                         onChange(e.target.value);
                     }}
-                    placeholder={`${count} records...`}
-                    className="form-control w-auto ms-1"
+                    placeholder={`Total of ${count} records...`}
+                    className="form-control w-auto ms-3"
                 />
             </span>
         </div>

@@ -1,10 +1,11 @@
 import axios from "axios";
+import { API_BASE_URL } from "../../../apiconstants";
 
 // Register user
 const registration = async (userData) => {
     console.log("userData", userData);
     const response = await axios.post(
-        "https://ph-task-api.herokuapp.com/api/registration",
+        API_BASE_URL + "/api/registration",
         userData
     );
     console.log("response", response);
@@ -16,10 +17,7 @@ const registration = async (userData) => {
 
 // Login user
 const login = async (userData) => {
-    const response = await axios.post(
-        "https://ph-task-api.herokuapp.com/api/login",
-        userData
-    );
+    const response = await axios.post(API_BASE_URL + "/api/login", userData);
     if (response.data) {
         localStorage.setItem("user", JSON.stringify(response.data));
     }
